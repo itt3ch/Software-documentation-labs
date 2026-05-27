@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cornerstone Dashboard</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<%- include("partials/header") %>
+
+<div class="layout">
+
+    <%- include("partials/sidebar") %>
+
+    <div class="content">
+
+        <div class="content-header">
+
+            <div>
+                <h1>Employee Management</h1>
+                <p>Enterprise HR Management System</p>
+            </div>
+
+            <a href="/add" class="add-btn">
+                Add Employee
+            </a>
+
+        </div>
+
+        <div class="employee-grid">
+
+            <% employees.forEach(employee => { %>
+
+                <div class="employee-card">
+
+                    <div class="employee-top">
+
+                        <div class="avatar">
+                            <%= employee.employee_name[0] %>
+                        </div>
+
+                        <div class="salary">
+                            $<%= employee.salary %>
+                        </div>
+
+                    </div>
+
+                    <h2><%= employee.employee_name %></h2>
+
+                    <p><%= employee.position %></p>
+
+                    <div class="employee-info">
+
+                        <span><%= employee.department %></span>
+
+                        <span><%= employee.country %></span>
+
+                    </div>
+
+                    <div class="employee-actions">
+
+                        <a href="/edit/<%= employee.id %>">
+                            Edit
+                        </a>
+
+                        <form
+                            action="/delete/<%= employee.id %>?_method=DELETE"
+                            method="POST"
+                        >
+                            <button type="submit">
+                                Delete
+                            </button>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            <% }) %>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
